@@ -1,0 +1,25 @@
+server_logger - INFO - Process started
+root - INFO - Usage: python3 file_transfer_python.py <input_file_path or input_table> <run_date(dd/mon/yy)> <input_file_delimiter>, file path should be complete
+server_logger - INFO - Process started
+root - ERROR - Usage: python3 file_transfer_python.py <input_file_path or input_table> <run_date(dd/mon/yy)> <input_file_delimiter>, file path should be complete
+server_logger - INFO - Process started
+root - ERROR - Usage: python3 file_transfer_python.py <input_file_path or input_table> <run_date(dd/mon/yy)> <input_file_delimiter>, file path should be complete
+server_logger - INFO - Process started
+server_logger - ERROR - No future dates allowed!
+server_logger - INFO - Process started
+server_logger - INFO - Process started
+server_logger - INFO - Process status updated- IN-PROGRESS
+server_logger - INFO - Process over- with status- FAILED
+server_logger - ERROR - No such file exists
+server_logger - INFO - Process started
+server_logger - INFO - Process status updated- IN-PROGRESS
+server_logger - INFO - Process over- with status- FAILED
+server_logger - INFO - Process started
+server_logger - INFO - Process status updated- IN-PROGRESS
+server_logger - INFO - Process over- with status- FAILED
+server_logger - INFO - Rows updated: 1
+server_logger - ERROR - No such file exists
+server_logger - INFO - Process started
+server_logger - INFO - Process status updated- IN-PROGRESS
+server_logger - INFO - Process over- with status- COMPLETED
+server_logger - INFO - Rows updated: 1
