@@ -23,3 +23,12 @@ server_logger - INFO - Process started
 server_logger - INFO - Process status updated- IN-PROGRESS
 server_logger - INFO - Process over- with status- COMPLETED
 server_logger - INFO - Rows updated: 1
+server_logger - INFO - Process started
+server_logger - INFO - Process status updated- IN-PROGRESS
+server_logger - INFO - Process over- with status- FAILED
+server_logger - INFO - Rows updated: 1
+server_logger - ERROR - No such file exists
+server_logger - INFO - Process started
+server_logger - INFO - Process status updated- IN-PROGRESS
+server_logger - INFO - Process over- with status- COMPLETED
+server_logger - INFO - Rows updated: 1

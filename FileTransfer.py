@@ -60,10 +60,11 @@ class FileTransfer:
 
 #updates initial progress
 	def initial_commit(self):
-		insert_query="insert into audit (status,updated_by) values (%s,%s)"
+		
+		insert_query="insert into audit (input_table_name,input_file_path,status,updated_by,last_updated_time) values (%s,%s,%s,%s,%s)"
 		hostname=socket.gethostname()
 		self.param_dict["status"]="IN-PROGRESS"
-		val=(self.param_dict["status"],hostname)
+		val=(self.param_dict['input_table_name'],self.param_dict['input_file_path'],self.param_dict["status"],hostname,self.param_dict['last_updated_time'])
 		self.cursor.execute(insert_query,val)
 		self.cnx.commit()
 		self.logger.info("Process status updated- IN-PROGRESS")
@@ -85,7 +86,8 @@ class FileTransfer:
 			self.param_dict["file_type"]=file_parts[-1]
 			self.param_dict["input_file_path"]=self.input_file_path_or_table
 			self.table_or_file="file"
-
+		self.time()
+		self.initial_commit()
 		self.check_status()
 	
 
@@ -114,7 +116,7 @@ class FileTransfer:
 			if result[0]!=1:
 				self.param_dict['status']="FAILED"
 				self.time()
-				self.query()
+				self.update_audit()
 				self.logger.error("No such table exists")
 				exit(1)
 			
@@ -122,7 +124,7 @@ class FileTransfer:
 			if os.path.isfile(self.param_dict['input_file_path'])==False:
 				self.param_dict['status']="FAILED"
 				self.time()
-				self.query()
+				self.update_audit()
 				self.logger.error("No such file exists")
 				exit(1)
 			else: 
@@ -184,7 +186,7 @@ class FileTransfer:
 			self.param_dict['run_date']=None
 			
 	
-	def query(self):
+	def update_audit(self):
 		self.time()
 		query="update audit set input_table_name=%s, input_file_name=%s, input_file_path=%s, file_type=%s, input_file_delimiter=%s, input_file_size=%s, input_row_count=%s, status=%s, op_file_path=%s, output_table_name=%s, output_row_count=%s, run_date=%s, last_updated_time=%s where id=%s"
 		keyvalues=self.param_dict.values()
@@ -197,12 +199,12 @@ class FileTransfer:
 		 
 #calls above defined methods.
 	def execute(self):
-		self.initial_commit()
+		
 		self.find_if_file_or_table()
 		self.update_run_date()
 		self.define_op_filename()
 		self.time()
-		self.query()
+		self.update_audit()
 		self.cnx.close()
 
 
